@@ -1,0 +1,16 @@
+%div
+  %fieldset
+    - name = config.metric_name
+    %legend= name.humanize
+    - config.options.each_pair do |key,val|
+      - field_name = "project[options][#{key}]"
+      %label{:for => field_name}= "#{key}:"
+      = text_field_tag field_name, val
+      %br
+    = text_field_tag "new_key[0]", ''
+    \ :
+    = text_field_tag "new_val[0]", ''
+    %br
+    = text_field_tag "new_key[0]", ''
+    \ :
+    = text_field_tag "new_val[0]", ''
