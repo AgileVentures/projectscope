@@ -13,9 +13,8 @@
     = f.text_field :name
 
   - ProjectMetrics.metric_names.each do |name|
-    - name.gsub!(/project_metric_/, '')
-    - config = @project.configs.where(:metric_name => name).first || @project.configs.build(:metric_name => name)
-    = render :partial => 'config', :object => config
+    - config = @project.config_for(name)
+    = render :partial => 'config', :object => @project.config_for(name), :locals => {:editing => true}
 
   .actions
     = f.submit

@@ -7,4 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Project.create!(:name => "ProjectScope")
-Project.create!(:name => "QuestionBank")
+Project.create!(:name => "QuestionBank", :configs => [
+    Config.new(:metric_name => 'code_climate', :options => {'token' => 'xyz', 'user' => 'fox'})
+  ])
+
+
+    

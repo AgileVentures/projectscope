@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/AgileVentures/ProjectMetrics/
-  revision: ab55a6d2e74b1ee0313029eb558891ddc560c649
+  revision: cedfd4d1a1d9aab8c3298e75218f330fdab174b9
   specs:
-    project_metrics (0.0.0)
+    project_metrics (0.0.1)
       activesupport
 
 GIT

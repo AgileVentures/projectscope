@@ -2,6 +2,12 @@ class Project < ActiveRecord::Base
   has_many :configs
   has_many :metric_samples
   
+  accepts_nested_attributes_for :configs
+
+  def config_for(metric)
+    #self.configs.for(metric).first || self.configs.build(:metric_name => metric)
+    configs.where(:metric_name => metric).first || configs.build(:metric_name => metric)
+  end
   # Returns a hash of the latest set of scores,
   # eg +{:github => 80, :code_climate => 95}
   attr_reader :current_scores
