@@ -10,6 +10,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @readonly = true
+    render :template => 'projects/edit'
   end
 
   # GET /projects/new
@@ -25,7 +27,6 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
-    process_config_options
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
@@ -41,12 +42,9 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1.json
   def update
     @project.attributes = project_params
-    process_config_options
-
-    byebug
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
+        format.html { redirect_to projects_path, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
         format.html { render :edit }
@@ -74,24 +72,17 @@ class ProjectsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_params
-    params.require(:project).require(:name)
-    params.permit(:config)
-  end
-  
-  # Grab new option keys/vals from params, and incorporate them into
-  #  the configs existing keys/vals.
-  # Example: given params['config']['code_climate']
-  #  BEFORE: {"options"=>{"token"=>"xyz", "user"=>"fox"}, "new"=>["a", "2", "b", "3"]}
-  #  AFTER:  {"options"=>{"token"=>"xyz", "user"=>"fox", "a" => "2", "b" => "3"}
-  def process_config_options
-    params['config'].each_pair do |metric_name, v|
+    # Grab new option keys/vals from params, and incorporate them into
+    #  the configs existing keys/vals.
+    # Example: given params['config']['code_climate']
+    #  BEFORE: {"options"=>{"token"=>"xyz", "user"=>"fox"}, "new"=>["a", "2", "b", "3"]}
+    #  AFTER:  {"options"=>{"token"=>"xyz", "user"=>"fox", "a" => "2", "b" => "3"}
+    params['project']['configs_attributes'].each_pair do |index, v|
       # ingest new options from new[] array
       v['options'].merge!(Hash[*(v.delete('new'))])
       # delete options with blank values
       v['options'].delete_if { |k,v| v.blank? }
-      
-      @project.config_for(metric_name).options = v['options']
     end
-
+    params['project']
   end
 end

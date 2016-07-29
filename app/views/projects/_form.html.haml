@@ -10,11 +10,28 @@
   .field
     = f.label :name
     %br
-    = f.text_field :name
+    = f.text_field :name, :disabled => @readonly
 
-  - ProjectMetrics.metric_names.each do |name|
-    - config = @project.config_for(name)
-    = render :partial => 'config', :object => @project.config_for(name), :locals => {:editing => true}
+  = f.fields_for :configs do |cf|
+    - name = cf.object.metric_name
+    %fieldset
+      %legend= name.humanize.capitalize
+      - cf.object.options.each_pair do |key,val|
+        - field_name = "project[configs_attributes][#{cf.index}][options][#{key}]"
+        %label{:for => field_name}= "#{key}:"
+        = text_field_tag field_name, val, :disabled => @readonly
+        %br
+      - unless @readonly
+        %label Add new config keys and values:
+        %br
+        = text_field_tag "project[configs_attributes][#{cf.index}][new][]", ''
+        \ :
+        = text_field_tag "project[configs_attributes][#{cf.index}][new][]", ''
+        %br
+        = text_field_tag "project[configs_attributes][#{cf.index}][new][]", ''
+        \ :
+        = text_field_tag "project[configs_attributes][#{cf.index}][new][]", ''
 
-  .actions
-    = f.submit
+  - unless @readonly
+    .actions
+      = f.submit

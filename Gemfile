@@ -2,11 +2,11 @@ source 'https://rubygems.org'
 
 ruby '>= 2.0.0'
 
-gem 'mysql'
 # Gems for metrics to use
 gem 'project_metrics', git: 'https://github.com/AgileVentures/ProjectMetrics/'
 gem 'project_metric_code_climate', git: 'https://github.com/AgileVentures/project_metric_code_climate'
 
+gem 'protected_attributes'
 gem 'rails', '4.2.6'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
