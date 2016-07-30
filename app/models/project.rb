@@ -7,6 +7,10 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :configs
   attr_accessible :name, :configs_attributes
 
+  def config_for(metric)
+    configs.where(:metric_name => metric).first || configs.build(:metric_name => metric)
+  end
+
   # Returns a hash of the latest set of scores,
   # eg +{:github => 80, :code_climate => 95}
   attr_reader :current_scores

@@ -78,6 +78,7 @@ class ProjectsController < ApplicationController
     #  BEFORE: {"options"=>{"token"=>"xyz", "user"=>"fox"}, "new"=>["a", "2", "b", "3"]}
     #  AFTER:  {"options"=>{"token"=>"xyz", "user"=>"fox", "a" => "2", "b" => "3"}
     params['project']['configs_attributes'].each_pair do |index, v|
+      v['options'] ||= {}
       # ingest new options from new[] array
       v['options'].merge!(Hash[*(v.delete('new'))])
       # delete options with blank values
