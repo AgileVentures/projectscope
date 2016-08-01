@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '>= 2.0.0'
+ruby '2.3.1'
 
 # Gems for metrics to use
 gem 'project_metrics', git: 'https://github.com/AgileVentures/ProjectMetrics/'
@@ -51,6 +51,7 @@ group :test do
   gem 'simplecov'
   gem 'launchy'
   gem 'poltergeist'
+  gem 'phantomjs', :require => 'phantomjs/poltergeist'
 end
 
 group :development do
