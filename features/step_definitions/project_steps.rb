@@ -21,3 +21,26 @@ Then /^there should be a project "(.*)" with config values/ do |name,table|
     expect(proj.config_for(h['metric_name']).options[h['key']]).to eq(h['value'])
   end
 end
+
+Given(/^the following projects exist:$/) do |table|
+  table.hashes.each do |hash|
+    Project.create hash
+  end
+  @projects = Project.all
+end
+
+Given(/^they have the following metric configs:$/) do |table|
+  table.hashes.each do |hash|
+    @projects.each do |p|
+      p.configs << Config.create(hash)
+    end
+  end
+end
+
+Given(/^they have the following metric samples:$/) do |table|
+  table.hashes.each do |hash|
+    @projects.each do |p|
+      p.metric_samples << MetricSample.create(hash)
+    end
+  end
+end
