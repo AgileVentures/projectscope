@@ -10,6 +10,7 @@ VCR.configure do |c|
           VCR.request_matchers.uri_without_param(:imp, :prev_imp)
       ]
   }
+  c.filter_sensitive_data("<GITHUB_ACCESS_TOKEN>") { ENV['GITHUB_ACCESS_TOKEN'] }
 end
 
 VCR.cucumber_tags do |t|
