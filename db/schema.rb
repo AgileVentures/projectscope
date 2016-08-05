@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160720004301) do
+ActiveRecord::Schema.define(version: 20160804055752) do
 
   create_table "configs", force: :cascade do |t|
     t.integer  "project_id"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20160720004301) do
     t.text     "raw_data"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.float    "score"
+    t.text     "image"
   end
 
   add_index "metric_samples", ["project_id", "metric_name"], name: "index_metric_samples_on_project_id_and_metric_name"
