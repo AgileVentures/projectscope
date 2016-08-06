@@ -4,7 +4,7 @@ ruby '2.3.1'
 
 # Gems for metrics to use
 gem 'project_metrics', git: 'https://github.com/AgileVentures/ProjectMetrics/'
-gem 'project_metric_code_climate', git: 'https://github.com/AgileVentures/project_metric_code_climate'
+gem 'project_metric_code_climate', git: 'https://github.com/AgileVentures/project_metric_code_climate', branch: '3_return_svg_direct'
 gem 'project_metric_github', git: 'https://github.com/AgileVentures/project_metric_github', branch: '4_update_to_original_projectscope_metric'
 
 gem 'protected_attributes'
