@@ -13,19 +13,19 @@ class Project < ActiveRecord::Base
 
   def latest_metric_samples
     ProjectMetrics.metric_names.map do |metric_name|
-      metric_samples.where(metric_name: metric_name).last
+      metric_samples.latest_for(metric_name)
     end
   end
 
   def resample_all_metrics
-    ProjectMetrics.metric_names.each do |metric|
-      credentials_hash = self.configs.where(:metric_name => metric).first.options
-      sample = ProjectMetrics.class_for(metric).new(credentials_hash)
-      if (sample.refresh)
-        self.metric_samples.create!(metric_name: metric,
-                                    raw_data: sample.raw_data,
-                                    score: sample.score,
-                                    image: sample.image
+    ProjectMetrics.metric_names.each do |metric_name|
+      credentials_hash = config_for(metric_name).options
+      metric = ProjectMetrics.class_for(metric_name).new(credentials_hash)
+      if (metric.refresh)
+        self.metric_samples.create!(metric_name: metric_name,
+                                    raw_data: metric.raw_data,
+                                    score: metric.score,
+                                    image: metric.image
         )
       end
     end
