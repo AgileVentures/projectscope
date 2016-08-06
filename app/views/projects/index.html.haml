@@ -16,7 +16,7 @@
         %td= link_to project.name, project
         - project.latest_metric_samples.each do |sample|
           %td{:id => "#{project.name}_#{sample.metric_name}_metric"}
-            = sample.try(:score)
+            = '%.2f' % sample.try(:score)
             #{raw sample.try(:image)}
 
 %br/
