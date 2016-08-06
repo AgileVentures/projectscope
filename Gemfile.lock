@@ -7,10 +7,10 @@ GIT
 
 GIT
   remote: https://github.com/AgileVentures/project_metric_code_climate
-  revision: 53a2efb9100f6c178872034faa88cd9735ad7709
+  revision: 953229db275b407800158de78da41384f272f5b9
   branch: 3_return_svg_direct
   specs:
-    project_metric_code_climate (0.0.4)
+    project_metric_code_climate (0.0.5)
       httparty
 
 GIT
