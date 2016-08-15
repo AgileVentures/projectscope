@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: https://github.com/AgileVentures/project_metric_github
-  revision: 0cc82d7226e98b3f789e695d6e01dd003ec7c6f8
+  revision: 2974c1b8fed516d916e680b7eb23c572aaaa6100
   branch: 4_update_to_original_projectscope_metric
   specs:
     project_metric_github (0.0.8)
