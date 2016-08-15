@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%h1 Project List
+
+%table
+  %thead
+    %tr
+      %th Project Name
+      - @metric_names.each do |metric_name|
+        %th
+          = metric_name.camelcase
+          Metric
+  %tbody
+    - @projects.each do |project|
+      %tr
+        %td= link_to project.name, project
+        - project.latest_metric_samples.each do |sample|
+          %td{:id => "#{project.name}_#{sample.metric_name}_metric"}
+            = '%.2f' % sample.try(:score)
+            #{raw sample.try(:image)}
+
+%br/
+
+= link_to 'New Project', new_project_path
