@@ -6,6 +6,7 @@ ruby '2.3.1'
 gem 'project_metrics', git: 'https://github.com/AgileVentures/ProjectMetrics/'
 gem 'project_metric_code_climate', git: 'https://github.com/AgileVentures/project_metric_code_climate'
 gem 'project_metric_github', git: 'https://github.com/AgileVentures/project_metric_github'
+gem 'project_metric_slack', git: 'https://github.com/AgileVentures/project_metric_slack'
 
 gem 'protected_attributes'
 gem 'rails', '4.2.6'
