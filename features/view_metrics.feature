@@ -35,5 +35,5 @@ Feature: View A Projects Metrics
     When I am on the projects page
     Then I should see "3.2" within "#LocalSupport_code_climate_metric"
     And I should see "3.5" within "#WebsiteOne_code_climate_metric"
-    And I should see "0.63" within "#LocalSupport_github_metric"
+    And I should see "0.64" within "#LocalSupport_github_metric"
     And I should see "0.28" within "#WebsiteOne_github_metric"
