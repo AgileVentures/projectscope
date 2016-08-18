@@ -36,8 +36,11 @@ end
 Given(/^they have the following metric configs:$/) do |table|
   table.hashes.each do |hash|
     project = Project.find_by(name: hash.delete('project'))
-    hash['options'] = { hash.delete('key').to_sym => hash.delete('value') }
-    project.configs << Config.create(hash)
+    existing_config = project.config_for(hash['metric_name'])
+    new_options = existing_config.options
+    new_options[hash['key'].to_sym] = hash['value']
+    existing_config.options = new_options
+    existing_config.save!
   end
 end
 

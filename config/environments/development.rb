@@ -38,4 +38,6 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  ENV['attr_encrypted_key'] = '123456789012345678901234567890123456789012345678901234567890'
 end
