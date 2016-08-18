@@ -8,7 +8,12 @@ gem 'project_metric_code_climate', git: 'https://github.com/AgileVentures/projec
 gem 'project_metric_github', git: 'https://github.com/AgileVentures/project_metric_github'
 gem 'project_metric_slack', git: 'https://github.com/AgileVentures/project_metric_slack'
 
+# use Rails 3-style protected attributes rather than strong params
 gem 'protected_attributes'
+# Securely store secrets, including symmetric encrypt key for attr_encrypted
+gem 'attr_encrypted'
+gem 'figaro'
+
 gem 'rails', '4.2.6'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
