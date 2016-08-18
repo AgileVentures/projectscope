@@ -18,14 +18,14 @@ Feature: View A Projects Metrics
       | WebsiteOne   | github       | url | https://github.com/AgileVentures/WebsiteOne   |
     And they have the following metric samples:
       | project      | metric_name  | score |
-      | LocalSupport | code_climate | 3.1   |
+      | LocalSupport | code_climate | 2.9   |
       | WebsiteOne   | code_climate | 3.4   |
       | LocalSupport | github       | 0.7   |
       | WebsiteOne   | github       | 0.6   |
 
   Scenario: view metric for projects
     When I am on the projects page
-    Then I should see "3.1" within "#LocalSupport_code_climate_metric"
+    Then I should see "2.9" within "#LocalSupport_code_climate_metric"
     And I should see "3.4" within "#WebsiteOne_code_climate_metric"
     And I should see "0.7" within "#LocalSupport_github_metric"
     And I should see "0.6" within "#WebsiteOne_github_metric"

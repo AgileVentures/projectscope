@@ -9,7 +9,7 @@ VCR.configure do |c|
           :method,
           VCR.request_matchers.uri_without_param(:imp, :prev_imp)
       ],
-      # record: :new_episodes
+      # record: :new_episodes # uncomment this line to add new HTTP requests 
   }
   c.filter_sensitive_data("<GITHUB_ACCESS_TOKEN>") { ENV['GITHUB_ACCESS_TOKEN'] }
   c.filter_sensitive_data("<SLACK_ACCESS_TOKEN>") { ENV['SLACK_ACCESS_TOKEN'] }
