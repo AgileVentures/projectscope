@@ -11,15 +11,15 @@ Feature: View A Projects Metrics with Secrets
       | LocalSupport |
       | WebsiteOne   |
     And they have the following metric configs:
-      | project      | metric_name  | key     | value                                             |
-      | LocalSupport | code_climate | url     | https://github.com/AgileVentures/LocalSupport     |
-      | WebsiteOne   | code_climate | url     | https://github.com/AgileVentures/WebsiteOne       |
-      | LocalSupport | github       | url     | https://github.com/AgileVentures/LocalSupport     |
-      | WebsiteOne   | github       | url     | https://github.com/AgileVentures/WebsiteOne       |
-      | LocalSupport | slack        | channel | localsupport                                      |
-      | WebsiteOne   | slack        | channel | websiteone                                        |
-      | LocalSupport | slack        | token   | xoxp-2277434945-2308721352-31759347459-be92a84e9f |
-      | WebsiteOne   | slack        | token   | xoxp-2277434945-2308721352-31759347459-be92a84e9f |
+      | project      | metric_name  | key     | value                                         |
+      | LocalSupport | code_climate | url     | https://github.com/AgileVentures/LocalSupport |
+      | WebsiteOne   | code_climate | url     | https://github.com/AgileVentures/WebsiteOne   |
+      | LocalSupport | github       | url     | https://github.com/AgileVentures/LocalSupport |
+      | WebsiteOne   | github       | url     | https://github.com/AgileVentures/WebsiteOne   |
+      | LocalSupport | slack        | channel | localsupport                                  |
+      | WebsiteOne   | slack        | channel | websiteone                                    |
+      | LocalSupport | slack        | token   | 1234567890                                    |
+      | WebsiteOne   | slack        | token   | 1234567890                                    |
     And they have the following metric samples:
       | project      | metric_name  | score |
       | LocalSupport | code_climate | 3.1   |
