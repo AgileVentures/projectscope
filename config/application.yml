@@ -1,9 +1,0 @@
-# Add configuration values here, as shown below.
-
-attr_encrypted_key: "TESTTESTTESTTESTTESTTESTTESTTESTTEST"
-
-production:
-  attr_encrypted_key: ";A9$hfKo4y&jn8NWqi8DoBkyg@=,fpRP"
-
-
-
