@@ -72,3 +72,12 @@ If the value of `APP_SECRET` or any of the values in
 0. if `$APP_SECRET` changed, change the value of the corresponding
 environment variable in CI, as above 
 
+TODO 
+----
+
+* [ ] should we be passing global project tokens via project metric settings? (github gem relying on ENV var)
+* [ ] get versions of the gems stored in db for future reference?
+* [ ] get JSON API set up so that other services can consume our data
+* [ ] get some sad path testing in place
+* [ ] get some rspecs on the individual models? 
+* [ ] make cukes higher level?

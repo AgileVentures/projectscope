@@ -21,7 +21,7 @@ GIT
 
 GIT
   remote: https://github.com/AgileVentures/project_metric_slack
-  revision: 7282bc5dc70f36d4b50bdf1a6f3ded1e97844570
+  revision: 1b0067ee2273800443d091155bab1fceec56f202
   specs:
     project_metric_slack (0.0.0)
       slack-ruby-client (>= 0.7.6)
