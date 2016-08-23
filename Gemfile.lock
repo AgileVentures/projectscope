@@ -35,7 +35,7 @@ GIT
 
 GIT
   remote: https://github.com/AgileVentures/project_metric_slack_trends
-  revision: c14538a31aa3188072a54c9c771b8fd91ee25882
+  revision: 44005802f12804e192647dbc632fab7e70d01d16
   specs:
     project_metric_slack_trends (0.0.0)
       rasem (~> 0.6.1)
