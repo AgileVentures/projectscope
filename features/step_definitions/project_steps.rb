@@ -58,3 +58,7 @@ end
 And(/^I am logged in$/) do
   page.driver.basic_authorize('cs169', ENV['PROJECTSCOPE_PASSWORD'])
 end
+
+Then(/^the config value "([^"]*)" should not appear in the page$/) do |value|
+  expect(page.body).not_to match value
+end
