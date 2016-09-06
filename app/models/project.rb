@@ -18,17 +18,19 @@ class Project < ActiveRecord::Base
   end
 
   def resample_all_metrics
-    ProjectMetrics.metric_names.each do |metric_name|
-      credentials_hash = config_for(metric_name).options
-      unless credentials_hash.empty?
-        metric = ProjectMetrics.class_for(metric_name).new(credentials_hash)
-        if (metric.refresh)
-          self.metric_samples.create!(metric_name: metric_name,
-                                      raw_data: metric.raw_data,
-                                      score: metric.score,
-                                      image: metric.image
-          )
-        end
+    ProjectMetrics.metric_names.each { |metric_name| resample_metric metric_name }
+  end
+
+  def resample_metric(metric_name)
+    credentials_hash = config_for(metric_name).options
+    unless credentials_hash.empty?
+      metric = ProjectMetrics.class_for(metric_name).new(credentials_hash)
+      if (metric.refresh)
+        self.metric_samples.create!(metric_name: metric_name,
+                                    raw_data: metric.raw_data,
+                                    score: metric.score,
+                                    image: metric.image
+        )
       end
     end
   end
