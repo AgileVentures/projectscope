@@ -30,9 +30,9 @@ ActiveRecord::Schema.define(version: 20160804055752) do
     t.text     "encrypted_raw_data"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
-    t.string   "encrypted_raw_data_iv"
     t.float    "score"
     t.text     "image"
+    t.string   "encrypted_raw_data_iv"
   end
 
   add_index "metric_samples", ["project_id", "metric_name"], name: "index_metric_samples_on_project_id_and_metric_name"

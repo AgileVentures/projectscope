@@ -52,9 +52,13 @@ Given(/^they have the following metric samples:$/) do |table|
 end
 
 Given(/^A project update job has been run$/) do
-  Project.all.each &:resample_all_metrics
+  $rake['project:resample_all'].execute
 end
 
 And(/^I am logged in$/) do
   page.driver.basic_authorize('cs169', ENV['PROJECTSCOPE_PASSWORD'])
+end
+
+Then(/^the config value "([^"]*)" should not appear in the page$/) do |value|
+  expect(page.body).not_to match value
 end
