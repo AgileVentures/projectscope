@@ -18,8 +18,8 @@ Feature: View A Projects Metrics with Secrets
       | WebsiteOne   | github       | url     | https://github.com/AgileVentures/WebsiteOne   |
       | LocalSupport | slack        | channel | localsupport                                  |
       | WebsiteOne   | slack        | channel | websiteone                                    |
-      | LocalSupport | slack        | token   | 1234567890                                    |
-      | WebsiteOne   | slack        | token   | 1234567890                                    |
+      | LocalSupport | slack        | token   | 12345678                                      |
+      | WebsiteOne   | slack        | token   | 12345678                                      |
     And they have the following metric samples:
       | project      | metric_name  | score |
       | LocalSupport | code_climate | 3.1   |
@@ -37,5 +37,5 @@ Feature: View A Projects Metrics with Secrets
   Scenario: update metrics for projects
     Given A project update job has been run
     When I am on the projects page
-    Then I should see "0.05" within "#LocalSupport_slack_metric"
-    And I should see "0.02" within "#WebsiteOne_slack_metric"
+    Then I should see "0.19" within "#LocalSupport_slack_metric"
+    And I should see "0.32" within "#WebsiteOne_slack_metric"
