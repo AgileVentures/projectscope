@@ -6,7 +6,8 @@ Feature: View A Projects Metrics
   I want to view that projects metrics
 
   Background:
-    Given the following projects exist:
+    Given I am logged in
+    And the following projects exist:
       | name         |
       | LocalSupport |
       | WebsiteOne   |
