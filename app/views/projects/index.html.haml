@@ -17,8 +17,11 @@
         - project.latest_metric_samples.each do |sample|
           - unless sample.try(:metric_name).nil?
             %td{:id => "#{project.name}_#{sample.try(:metric_name)}_metric"}
+              = raw sample.try(:image)
+              %br/
+              = sample.updated_at.strftime("%Y/%m/%d %I:%M")
+              %br/
               = '%.2f'.try(:%,sample.try(:score) || 0.0)
-              #{raw sample.try(:image)}
 
 %br/
 
