@@ -4,10 +4,19 @@ ruby '2.3.1'
 
 # Gems for metrics to use
 gem 'project_metrics', git: 'https://github.com/AgileVentures/ProjectMetrics/'
-gem 'project_metric_code_climate', git: 'https://github.com/AgileVentures/project_metric_code_climate', branch: '3_return_svg_direct'
-gem 'project_metric_github', git: 'https://github.com/AgileVentures/project_metric_github', branch: '4_update_to_original_projectscope_metric'
+gem 'project_metric_code_climate', git: 'https://github.com/AgileVentures/project_metric_code_climate'
+gem 'project_metric_github', git: 'https://github.com/AgileVentures/project_metric_github'
+gem 'project_metric_slack', git: 'https://github.com/AgileVentures/project_metric_slack'
+gem 'project_metric_pivotal_tracker', git: 'https://github.com/AgileVentures/project_metric_pivotal_tracker'
+gem 'project_metric_slack_trends', git: 'https://github.com/AgileVentures/project_metric_slack_trends'
 
+# use Rails 3-style protected attributes rather than strong params
 gem 'protected_attributes'
+# Securely store secrets, including symmetric encrypt key for attr_encrypted
+gem 'attr_encrypted'
+gem 'figaro'
+
+gem 'rake'
 gem 'rails', '4.2.6'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -41,6 +50,7 @@ group :development, :test do
   gem 'sqlite3'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'dotenv-rails'
 end
 
 group :test do

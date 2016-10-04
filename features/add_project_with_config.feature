@@ -6,8 +6,8 @@ Feature: add project and its config/credentials info
   I want to add a project and specify credentials for scraping its metrics
 
   Scenario: add project with config info for CodeClimate gem
-
-    Given I am on the projects page
+    Given I am logged in
+    And I am on the projects page
     When I follow "New Project"
     And I fill in "Name" with "Test Project"
     And I enter new "Code Climate" config values:

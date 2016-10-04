@@ -36,8 +36,11 @@ end
 Given(/^they have the following metric configs:$/) do |table|
   table.hashes.each do |hash|
     project = Project.find_by(name: hash.delete('project'))
-    hash['options'] = { hash.delete('key').to_sym => hash.delete('value') }
-    project.configs << Config.create(hash)
+    existing_config = project.config_for(hash['metric_name'])
+    new_options = existing_config.options
+    new_options[hash['key'].to_sym] = hash['value']
+    existing_config.options = new_options
+    existing_config.save!
   end
 end
 
@@ -49,5 +52,13 @@ Given(/^they have the following metric samples:$/) do |table|
 end
 
 Given(/^A project update job has been run$/) do
-  Project.all.each &:resample_all_metrics
+  $rake['project:resample_all'].execute
+end
+
+And(/^I am logged in$/) do
+  page.driver.basic_authorize('cs169', ENV['PROJECTSCOPE_PASSWORD'])
+end
+
+Then(/^the config value "([^"]*)" should not appear in the page$/) do |value|
+  expect(page.body).not_to match value
 end
