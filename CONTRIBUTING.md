@@ -1,7 +1,7 @@
 Development Process
 ------------------
 
-Our default working branch is currently `master`.  We do work by creating branches off `master` for new features and bugfixes.  Any feature should include Cucumber acceptance tests and where approciate RSpec unit tests.  We try to avoid view and controller specs, and focus purely on unit tests at the model and service level where possible.  A bugfix may include an acceptance test depending on where the bug occurred, but fixing a bug should start with the creation of a test that replicates the bug, so that any bugfix submission will include an appropriate test as well as the fix itself.
+Our default working branch is currently `develop`.  We do work by creating branches off `develop` for new features and bugfixes.  Any feature should include Cucumber acceptance tests and where approciate RSpec unit tests.  We try to avoid view and controller specs, and focus purely on unit tests at the model and service level where possible.  A bugfix may include an acceptance test depending on where the bug occurred, but fixing a bug should start with the creation of a test that replicates the bug, so that any bugfix submission will include an appropriate test as well as the fix itself.
 
 Where possible please include a user story in the following form to indicate the higher level issue that is being addressed:
 
@@ -51,7 +51,7 @@ Whatever you are working on, or however far you get please do open a "Work in Pr
 Before you make a pull request it is a great idea to sync again to the upstream develop branch to reduce the chance that there will be any merge conflicts arising from other PRs that have been merged to develop since you started work:
 
 ```
-git pull upstream master
+git pull upstream develop
 ```
 
 In your pull request description please include a sensible description of your code and a tag `fixes #<issue-id>` e.g. :
@@ -69,11 +69,11 @@ See also [more details on submitting pull requests](how_to_submit_a_pull_request
 Pull Request Review
 -------------------
 
-Currently @tansaku and @armandofox are pairing on the project management of projectscope_mvp_.  The project managers will review your pull request as soon as possible.  The project managers can merge unilaterally if necessary, but in general both project managers should sign off on a pull request before it is merged.
+Currently @tansaku, @mtc2013 and @armandofox are collaborating on the project management of projectscope.  The project managers will review your pull request as soon as possible.  The project managers can merge unilaterally if necessary, but in general at least one project managers should sign off on a pull request before it is merged.
 
 The project managers will review the pull request for coherence with the specified feature or bug fix, and give feedback on code quality, user experience, documentation and git style.  Please respond to comments from the project managers with explanation, or further commits to your pull request in order to get merged in as quickly as possible.
 
-To maximize flexibility add the project managers as collaborators to your projectscope_mvp fork in order to allow them to help you fix your pull request, but this is not required.
+To maximize flexibility add the project managers as collaborators to your projectscope fork in order to allow them to help you fix your pull request, but this is not required.
 
 Code Style
 -------------
