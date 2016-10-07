@@ -17,9 +17,9 @@ https://help.github.com/articles/creating-an-access-token-for-command-line-use/
 
 Then run rails server like so:
 
-```GITHUB_ACCESS_TOKEN=<YOUR_ACCESS_TOKEN> rails s```
+```PROJECTSCOPE_PASSWORD=1234 GITHUB_ACCESS_TOKEN=<YOUR_ACCESS_TOKEN> rails s```
 
-Then you can use the web interface to create projects.  Both the above gems (github, codeclimate), require a key pair of
+The password is for the http authentication, and the username is `cs169`.  Then you can use the web interface to create projects.  Both the above gems (github, codeclimate), require a key pair of
 
 "url" "http://github.com/AgileVentures/LocalSupport"
 
