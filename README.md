@@ -42,38 +42,21 @@ or execute
 
 The file `config/application.yml.asc` is a symmetric-key-encrypted YAML
 file that itself contains the encryption keys for encrypting sensitive
-database attributes at rest.  It is safe to version this file.
+database attributes at rest.  It is safe to version this file.  The secrets
+in this file are managed [as described in this article.](saasbook.blogspot.com/2016/08/keeping-secrets.html)
 
-Let us call the key used to encrypt this file the "main secret".
+# Creating new metric gems
 
-**This means** the file `config/application.yml` must be created on the
-fly (**and should never be
-versioned**), by decrypting `application.yml.asc` with the main
-secret, to run the app or its tests.  Here's how to do it:
+Each metric gem *must* provide the following methods:
 
-* On your local machine for development: run the following command line
+* `initialize(credentials={}, raw_data=nil)` Constructor that takes any credentials needed for the gem to contact any remote services, as a hash, and optionally takes an initial set of raw data (i.e. what would be delivered by the API of the remote service)
+* `score`: computes the metric score (normalized from 0 to 100) given the current raw data
+* `refresh`: refresh raw data from remote API
+* `raw_data=(new_data)`: explicitly set raw data, rather than fetching from remote API
+* `raw_data`: return most recent raw data
+* `image`: return an image representation of the current metric state.  Currently it must be an SVG image, but this should be changed to allow other common image types or even loading from a remote image URL.
 
-```sh
-export APP_SECRET=<the application secret goes here>
-gpg --passphrase "$APP_SECRET" --output config/application.yml --decrypt config/application.yml.asc
-```
-
-* In CI: Set an environment variable APP_SECRET on Travis to the value
-of the main secret.  The `.travis.yml` file specifies  a `before_script`
-step that runs the above command line to create `config/application.yml`.
-
-* In production: first create the `config/application.yml` file locally
-as above, then run `figaro heroku:set -e production`
-
-If the value of `APP_SECRET` or any of the values in
-`config/application.yml` are changed, you must:
-
-0. regenerate `config/application.yml.asc` with `gpg --passphrase "$APP_SECRET" --output config/application.yml.asc --armor --encrypt config/application.yml"
-
-0. commit the new version of `config/application.yml.asc`
-
-0. if `$APP_SECRET` changed, change the value of the corresponding
-environment variable in CI, as above
+If the metric gem provides the class method `credentials`, it should return a list of strings that are the names of the configuration variables the gem expects to find in the `credentials` hash passed to it.  Note that these are configuration variables for an _instance_ of the metric, for example, the GitHub or PivotalTracker token to access a particular private repo or account.  (Application-wide configuration variables are handled separately.)
 
 TODO
 ----
