@@ -54,7 +54,10 @@ Each metric gem *must* provide the following methods:
 * `refresh`: refresh raw data from remote API
 * `raw_data=(new_data)`: explicitly set raw data, rather than fetching from remote API
 * `raw_data`: return most recent raw data
-* `image`: return an image representation of the current metric state.  Currently it must be an SVG image, but this should be changed to allow other common image types or even loading from a remote image URL.
+* `image`: return an image representation of the current metric state.  At the moment this "image" will be rendered as HTML, so you can in principle return a link to a remote image, but we recommend returning an SVG image since this is extremely flexible and can be rendered as interactive HTML, allowing mouse over explanation on parts of the image etc.
+
+- https://en.wikipedia.org/wiki/Scalable_Vector_Graphics
+- https://css-tricks.com/how-to-make-charts-with-svg/
 
 If the metric gem provides the class method `credentials`, it should return a list of strings that are the names of the configuration variables the gem expects to find in the `credentials` hash passed to it.  Note that these are configuration variables for an _instance_ of the metric, for example, the GitHub or PivotalTracker token to access a particular private repo or account.  (Application-wide configuration variables are handled separately.)
 
