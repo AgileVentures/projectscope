@@ -65,6 +65,7 @@ group :test do
   gem 'phantomjs', :require => 'phantomjs/poltergeist'
   gem 'vcr'
   gem 'webmock'
+  gem 'launchy'
 end
 
 group :development do
