@@ -6,3 +6,7 @@ Before('@rake') do |scenario|
     $rake = Rake::Task
   end
 end
+
+After('@timetravel') do |scenario|
+  Timecop.return
+end
