@@ -62,3 +62,12 @@ end
 Then(/^the config value "([^"]*)" should not appear in the page$/) do |value|
   expect(page.body).not_to match value
 end
+
+Given(/^the date is "([^"]*)"$/) do |date|
+  date =~ /(\d{2})\/(\d{2})\/(\d{4})/
+  month = Integer($1,10)
+  day = Integer($2,10)
+  year = Integer($3,10)
+  new_time = Time.utc(year, month,day, 12, 0, 0)
+  Timecop.travel(new_time)
+end
