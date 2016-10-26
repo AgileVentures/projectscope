@@ -51,7 +51,7 @@ or execute
 The file `config/application.yml.asc` is a symmetric-key-encrypted YAML
 file that itself contains the encryption keys for encrypting sensitive
 database attributes at rest.  It is safe to version this file.  The secrets
-in this file are managed [as described in this article.](saasbook.blogspot.com/2016/08/keeping-secrets.html)
+in this file are managed [as described in this article.](http://saasbook.blogspot.com/2016/08/keeping-secrets.html)
 
 # Creating new metric gems
 
