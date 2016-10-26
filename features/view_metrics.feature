@@ -1,4 +1,4 @@
-@javascript @vcr
+@javascript @vcr @omniauth
 Feature: View A Projects Metrics
 
   As a project supervisor

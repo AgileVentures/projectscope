@@ -56,7 +56,12 @@ Given(/^A project update job has been run$/) do
 end
 
 And(/^I am logged in$/) do
-  page.driver.basic_authorize('cs169', ENV['PROJECTSCOPE_PASSWORD'])
+  steps %Q{
+    Given I am on the login page
+    And I have a valid github account with email "test-coach@test.com" username "test-coach"
+    And I follow "Sign in with GitHub"
+  }
+  sleep(1)
 end
 
 Then(/^the config value "([^"]*)" should not appear in the page$/) do |value|

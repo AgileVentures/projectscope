@@ -60,3 +60,12 @@ Capybara.javascript_driver = :poltergeist
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
 World(FactoryGirl::Syntax::Methods)
+
+# for cucumber omniauth test
+Before('@omniauth') do
+  OmniAuth.config.test_mode = true
+end
+
+After('@omniauth') do
+  OmniAuth.config.test_mode = false
+end

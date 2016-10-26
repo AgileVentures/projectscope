@@ -1,4 +1,4 @@
-@javascript
+@javascript @omniauth
 Feature: add project and its config/credentials info
 
   As a project supervisor

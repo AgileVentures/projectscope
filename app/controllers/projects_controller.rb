@@ -1,8 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
-  http_basic_authenticate_with name: "cs169", password: ENV['PROJECTSCOPE_PASSWORD']
-  
   # GET /projects
   # GET /projects.json
   def index
