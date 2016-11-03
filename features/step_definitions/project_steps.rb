@@ -56,11 +56,21 @@ Given(/^A project update job has been run$/) do
 end
 
 And(/^I am logged in$/) do
-  steps %Q{
-    Given I am on the login page
-    And I have a valid github account with email "test-coach@test.com" username "test-coach"
-    And I follow "Sign in with GitHub"
-  }
+  visit path_to("the login page")
+  OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(
+    {
+      :uid => '12345',
+      :info => {
+        :email => "test-coach@test.com"
+      },
+      :extra => {
+        :raw_info => {
+          :email => "test-coach@test.com",
+          :login => "test-coach"
+        }
+      }
+    })
+  click_link "Sign in with GitHub"
   sleep(1)
 end
 

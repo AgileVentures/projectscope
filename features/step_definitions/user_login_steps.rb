@@ -1,4 +1,5 @@
 When /^I have a valid github account with email "(.*)" username "(.*)"/ do |email, username|
+	email = nil if email == ""
 	OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(
 		{
 	    :uid => '12345',

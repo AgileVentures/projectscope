@@ -32,8 +32,8 @@ class User < ActiveRecord::Base
   def self.from_omniauth(auth)
     email = auth.info.email.nil? ? auth.extra.raw_info.email : auth.info.email
     login = auth.extra.raw_info.login
-    if !login.nil? and !email.nil?
-    	User.where(provider: auth.provider, provider_username: login, email: email).first_or_create do |user|
+    unless login.nil?
+    	User.where(provider: auth.provider, provider_username: login).first_or_create do |user|
     		user.provider = auth.provider
     		user.uid = auth.uid
     		user.email = email
@@ -41,6 +41,10 @@ class User < ActiveRecord::Base
     		user.password = Devise.friendly_token[0,20]
     	end
     end
+  end
+
+  def email_required?
+    false
   end
 
   def is_admin?
