@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
+#  provider_username      :string           default(""), not null
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string
@@ -18,6 +19,7 @@
 #  provider               :string
 #  uid                    :string
 #  role                   :string           default("coach"), not null
+#  preferred_metrics      :text
 #
 
 class User < ActiveRecord::Base
@@ -25,6 +27,12 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable, 
     :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:github]
+
+  serialize :preferred_metrics, Array
+
+  has_and_belongs_to_many :preferred_projects, :foreign_key => "user_id", :class_name => "Project"
+
+  after_initialize :set_default_preferred_metrics
 
   ADMIN = "admin"
   COACH = "coach"
@@ -49,5 +57,13 @@ class User < ActiveRecord::Base
 
   def is_admin?
   	self.role == ADMIN
+  end
+
+  private
+
+  def set_default_preferred_metrics
+    unless self.try(:preferred_metrics).nil? || self.preferred_metrics.length > 0
+      self.preferred_metrics = ProjectMetrics.metric_names 
+    end
   end
 end

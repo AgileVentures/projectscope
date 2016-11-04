@@ -7,4 +7,8 @@ module ProjectsHelper
     end
     project
   end
+
+  def is_selected_metric? sample
+    sample.try(:metric_name) != nil && (current_user.preferred_metrics.include? sample.metric_name)
+  end
 end

@@ -1,3 +1,5 @@
+= link_to "Preference", user_path(current_user), :class => "btn btn-primary"
+
 %h1 Project List
 
 %table
@@ -13,7 +15,7 @@
       %tr
         %td= link_to project.name, project
         - project.latest_metric_samples.each do |sample|
-          - unless sample.try(:metric_name).nil?
+          - if is_selected_metric? sample
             %td{:id => "#{project.name}_#{sample.try(:metric_name)}_metric"}
               = '%.2f'.try(:%,sample.try(:score) || 0.0)
               #{raw sample.try(:image)}

@@ -5,8 +5,8 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
-    @metric_names = ProjectMetrics.metric_names
+    @projects = current_user.preferred_projects.empty? ? Project.all : current_user.preferred_projects
+    @metric_names = current_user.preferred_metrics
   end
 
   # GET /projects/1
