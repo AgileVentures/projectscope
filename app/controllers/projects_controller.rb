@@ -4,9 +4,16 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   # GET /projects.json
+
   def index
-    @projects = current_user.preferred_projects.empty? ? Project.all : current_user.preferred_projects
     @metric_names = current_user.preferred_metrics
+    preferred_projects = current_user.preferred_projects.empty? ? Project.all : current_user.preferred_projects
+    if params[:type].nil? or params[:type] == "project_name"
+      @projects = order_by_project_name preferred_projects
+    else
+      @projects = order_by_metric_name preferred_projects
+    end
+    update_session
   end
 
   # GET /projects/1
@@ -87,5 +94,23 @@ class ProjectsController < ApplicationController
       v['options'].delete_if { |k,v| v.blank? }
     end
     params['project']
+  end
+  
+  private
+
+  def order_by_project_name preferred_projects
+    session[:order] = "ASC" if session[:pre_click] != "project_name"
+    preferred_projects.order_by_name(session[:order])
+  end
+  
+  def order_by_metric_name preferred_projects
+    click_type = params[:type]
+    session[:order] = "ASC" if session[:pre_click] != click_type 
+    preferred_projects.order_by_metric_score(click_type, session[:order])
+  end
+  
+  def update_session
+    session[:order] = session[:order] == "ASC" ? "DESC" : "ASC"
+    session[:pre_click] = params[:type]
   end
 end
