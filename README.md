@@ -9,6 +9,8 @@ CS169 Group Forked Repo Status:
 <a href="https://travis-ci.org/DrakeW/projectscope"><img src="https://travis-ci.org/DrakeW/projectscope.svg?branch=develop"></a>
 <a href="https://codeclimate.com/github/DrakeW/projectscope/coverage"><img src="https://codeclimate.com/github/DrakeW/projectscope/badges/coverage.svg" /></a>
 
+Pivotal Tracker: https://www.pivotaltracker.com/n/projects/1886749
+
 # MVP dashboard for ProjectScope
 
 A dashboard to show project metrics such as those supported by gems like
