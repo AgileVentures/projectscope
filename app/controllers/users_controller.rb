@@ -5,13 +5,13 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
   	@all_projects = Project.all
   	@all_metrics = ProjectMetrics.metric_names
-  	@preferred_projects = @user.preferred_projects.empty? ? @all_projects : current_user.preferred_projects
+  	@preferred_projects = @user.preferred_projects
   	@preferred_metrics = @user.preferred_metrics
   end
 
   def update
   	@selected_projects = Project.where(:id => params[:projects].try(:keys))
-  	@selected_metrics = params[:metrics].keys
+  	@selected_metrics = params[:metrics].try(:keys)
   	current_user.preferred_projects = @selected_projects
   	current_user.preferred_metrics = @selected_metrics
   	if current_user.save

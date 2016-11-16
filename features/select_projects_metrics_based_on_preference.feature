@@ -68,3 +68,13 @@ Scenario: select both projects and metrics
 	And I should not see "3.4"
 	And I should not see "0.7"
 	And I should not see "0.6"
+
+Scenario: should see both newly created project and existing projects
+	When I am on the projects page
+	And I follow "New Project"
+    And I fill in "Name" with "Test Project"
+    And I press "Create Project"
+    When I go to the home page
+    Then I should see "2.9" within "#LocalSupport_code_climate_metric"
+	And I should see "0.6" within "#WebsiteOne_github_metric"
+	And I should see "Test Project"

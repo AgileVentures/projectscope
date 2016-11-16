@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
 
   serialize :preferred_metrics, Array
 
-  has_and_belongs_to_many :preferred_projects, :foreign_key => "user_id", :class_name => "Project"
+  has_and_belongs_to_many :selected_projects, :foreign_key => "user_id", :class_name => "Project"
 
   after_initialize :set_default_preferred_metrics
 
@@ -57,6 +57,15 @@ class User < ActiveRecord::Base
 
   def is_admin?
   	self.role == ADMIN
+  end
+
+  def preferred_projects
+    self.selected_projects = Project.all if self.selected_projects.empty?
+    self.selected_projects
+  end
+
+  def preferred_projects= projects
+    self.selected_projects = projects
   end
 
   private
