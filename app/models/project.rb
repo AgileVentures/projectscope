@@ -22,8 +22,10 @@ class Project < ActiveRecord::Base
 
   scope :order_by_metric_score, -> (metric_name, order) { 
             joins(:metric_samples).where("metric_samples.metric_name = ?", metric_name)
-                                  .order("metric_samples.score #{order}") }
-  scope :order_by_name, -> (order) { order("name #{order}") }
+                                  .group(:id)
+                                  .having("metric_samples.created_at = MAX(metric_samples.created_at)")
+                                  .order("metric_samples.score #{order}") if ["ASC", "DESC"].include? order }
+  scope :order_by_name, -> (order) { order("name #{order}") if ["ASC", "DESC"].include? order }
 
   def config_for(metric)
     configs.where(:metric_name => metric).first || configs.build(:metric_name => metric)
