@@ -5,62 +5,53 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Project.create!(:name => "THE ARCTIC INSTITUTE", :metric_samples =>[
-    MetricSample.create!(:metric_name => 'code_climate', :project_id => 1, :score => 7), 
-    MetricSample.create!(:metric_name => 'github', :project_id => 1, :score => 2), 
-    MetricSample.create!(:metric_name => 'slack', :project_id => 1, :score => 5),
-    MetricSample.create!(:metric_name => 'pivotal_tracker', :project_id => 1, :score => 4),
-    MetricSample.create!(:metric_name => 'slack_trends', :project_id => 1, :score => 6)])
-Project.create!(:name => "ALZHEIMER'S GREATER LOS ANGELES", :metric_samples =>[
-    MetricSample.create!(:metric_name => 'code_climate', :project_id => 2, :score => 9), 
-    MetricSample.create!(:metric_name => 'github', :project_id => 2, :score => 7), 
-    MetricSample.create!(:metric_name => 'slack', :project_id => 2, :score => 15),
-    MetricSample.create!(:metric_name => 'pivotal_tracker', :project_id => 2, :score => 14),
-    MetricSample.create!(:metric_name => 'slack_trends', :project_id => 2, :score => 4)])
-Project.create!(:name => "VISIONARIA NETWORK", :metric_samples =>[
-    MetricSample.create!(:metric_name => 'code_climate', :project_id => 3, :score => 9), 
-    MetricSample.create!(:metric_name => 'github', :project_id => 3, :score => 4), 
-    MetricSample.create!(:metric_name => 'slack', :project_id => 3, :score => 3),
-    MetricSample.create!(:metric_name => 'pivotal_tracker', :project_id => 3, :score => 12),
-    MetricSample.create!(:metric_name => 'slack_trends', :project_id => 3, :score => 14)])
-Project.create!(:name => "ACCCOS", :metric_samples =>[
-    MetricSample.create!(:metric_name => 'code_climate', :project_id => 4, :score => 13), 
-    MetricSample.create!(:metric_name => 'github', :project_id => 4, :score => 6), 
-    MetricSample.create!(:metric_name => 'slack', :project_id => 4, :score => 9),
-    MetricSample.create!(:metric_name => 'pivotal_tracker', :project_id => 4, :score => 3),
-    MetricSample.create!(:metric_name => 'slack_trends', :project_id => 4, :score => 7)])
-Project.create!(:name => "ORINDA POLICE DEPARTMENT", :metric_samples =>[
-    MetricSample.create!(:metric_name => 'code_climate', :project_id => 5, :score => 3), 
-    MetricSample.create!(:metric_name => 'github', :project_id => 5, :score => 2), 
-    MetricSample.create!(:metric_name => 'slack', :project_id => 5, :score => 5),
-    MetricSample.create!(:metric_name => 'pivotal_tracker', :project_id => 5, :score => 4),
-    MetricSample.create!(:metric_name => 'slack_trends', :project_id => 5, :score => 6)])
-Project.create!(:name => "ESENTIAL", :metric_samples =>[
-    MetricSample.create!(:metric_name => 'code_climate', :project_id => 6, :score => 3), 
-    MetricSample.create!(:metric_name => 'github', :project_id => 6, :score => 1), 
-    MetricSample.create!(:metric_name => 'slack', :project_id => 6, :score => 7),
-    MetricSample.create!(:metric_name => 'pivotal_tracker', :project_id => 6, :score => 5),
-    MetricSample.create!(:metric_name => 'slack_trends', :project_id => 6, :score => 9)])
-Project.create!(:name => "ProjectScope", :metric_samples =>[
-    MetricSample.create!(:metric_name => 'code_climate', :project_id => 7, :score => 23), 
-    MetricSample.create!(:metric_name => 'github', :project_id => 7, :score => 22), 
-    MetricSample.create!(:metric_name => 'slack', :project_id => 7, :score => 15),
-    MetricSample.create!(:metric_name => 'pivotal_tracker', :project_id => 7, :score => 14),
-    MetricSample.create!(:metric_name => 'slack_trends', :project_id => 7, :score => 16)])
-Project.create!(:name => "CALIFORNIA POETS IN THE SCHOOLS", :metric_samples =>[
-    MetricSample.create!(:metric_name => 'code_climate', :project_id => 8, :score => 4), 
-    MetricSample.create!(:metric_name => 'github', :project_id => 8, :score => 3), 
-    MetricSample.create!(:metric_name => 'slack', :project_id => 8, :score => 7),
-    MetricSample.create!(:metric_name => 'pivotal_tracker', :project_id => 8, :score => 3),
-    MetricSample.create!(:metric_name => 'slack_trends', :project_id => 8, :score => 5)])
-Project.create!(:name => "QuestionBank",
-                :configs => [
-                    Config.create!(:metric_name => 'code_climate', :options => {'token' => 'xyz', 'user' => 'fox'}),
-                    Config.create!(:metric_name => 'github', :options => {'token' =>'123', 'user'=>"fox"})], 
-                :metric_samples =>[
-                    MetricSample.create!(:metric_name => 'code_climate', :project_id => 9, :score => 5), 
-                    MetricSample.create!(:metric_name => 'github', :project_id => 9, :score => 4), 
-                    MetricSample.create!(:metric_name => 'slack', :project_id => 9, :score => 6),
-                    MetricSample.create!(:metric_name => 'pivotal_tracker', :project_id => 9, :score => 2),
-                    MetricSample.create!(:metric_name => 'slack_trends', :project_id => 9, :score => 6)])
-    
+require 'project_metric_code_climate' 
+require 'project_metric_slack_trends'
+require 'project_metric_pivotal_tracker'
+
+dummy1_code_climate = ProjectMetrics.class_for('code_climate').new url: 'http://github.com/AgileVentures/WebsiteOne'
+dummy2_code_climate = ProjectMetrics.class_for('code_climate').new url: 'http://github.com/AgileVentures/project_metric_slack'
+
+# generate images
+dummy1_code_climate.image
+dummy2_code_climate.image
+
+slack1 = File.read './db/images/slack1.svg'
+slack2 = File.read './db/images/slack2.svg'
+slack3 = File.read './db/images/slack3.svg'
+slack_trends1 = File.read './db/images/slack_trends1.svg'
+slack_trends2 = File.read './db/images/slack_trends2.svg'
+slack_trends3 = File.read './db/images/slack_trends3.svg'
+pivot1 = File.read './db/images/pivot1.svg'
+pivot2 = File.read './db/images/pivot2.svg'
+github1 = File.read './db/images/github1.svg'
+github2 = File.read './db/images/github2.svg'
+github3 = File.read './db/images/github3.svg'
+
+
+dummies = Hash.new
+dummies["code_climate"] = [dummy1_code_climate.raw_data, dummy2_code_climate.raw_data, dummy1_code_climate.raw_data]
+dummies["github"] = [github1, github2, github3]
+dummies["slack"] = [slack1, slack2, slack3]
+dummies["pivotal_tracker"] = [pivot1, pivot2, pivot2]
+dummies["slack_trends"] = [slack_trends1, slack_trends2, slack_trends3]
+
+projects_list = []
+1.upto(20).each do |num|
+	projects_list << Project.create!(:name => "Project #{num}")
+end
+
+end_date = Date.today
+start_date = end_date - 14.days
+
+start_date.upto(end_date) do |date|
+    projects_list.each do |project|
+        ProjectMetrics.metric_names.each do |metric|
+            MetricSample.create!(:metric_name => metric,
+                                 :project_id => project.id,
+                                 :score => rand(0.0..4.0).round(2),
+                                 :image => dummies[metric][rand(3)],
+                                 :created_at => date)
+        end
+    end
+end

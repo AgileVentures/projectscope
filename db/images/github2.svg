@@ -1,0 +1,13 @@
+<svg width="100" height="20">
+  <a xlink:href="https://github.com/AgileVentures/LocalSupport/pulls">
+    <rect x="0" y="0" width="30.00" height="20" style="fill:red;stroke:black">
+      <title>30.00% of Pull Requests have no comments</title>
+    </rect>
+    <rect x="30.00" y="0" width="16.67" height="20" style="fill:yellow;stroke:black">
+      <title>16.67% of Pull Requests have one comment</title>
+    </rect>
+    <rect x="46.67" y="0" width="53.33" height="20" style="fill:green;stroke:black">
+      <title>53.33% of Pull Requests have two or more comments</title>
+    </rect>
+  </a>
+</svg>

@@ -98,7 +98,6 @@ class ProjectsController < ApplicationController
   end
   
   private
-
   def order_by_project_name preferred_projects
     session[:order] = "ASC" if session[:pre_click] != "project_name"
     preferred_projects.order_by_name(session[:order])

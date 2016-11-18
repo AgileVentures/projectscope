@@ -1,0 +1,10 @@
+<svg width="60" height="20">
+  <rect x="0" y="0" width="28" height="20" style="fill:green;stroke:black">
+  </rect>
+  <rect x="28" y="0" width="2" height="20" style="fill:yellow;stroke:black">
+  </rect>
+  <rect x="30" y="0" width="2" height="20" style="fill:red;stroke:black">
+  </rect>
+  <rect x="32" y="0" width="28" height="20" style="fill:darkgrey;stroke:black">
+  </rect>
+</svg>

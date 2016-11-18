@@ -1,0 +1,11 @@
+<svg width="60" height="20">
+  <rect x="0" y="0" width="20" height="20" style="fill:#ff0000;stroke:black">
+    <title>armandofox</title>
+  </rect>
+  <rect x="20" y="0" width="20" height="20" style="fill:#ff0000;stroke:black">
+    <title>mtc2013</title>
+  </rect>
+  <rect x="40" y="0" width="20" height="20" style="fill:#ffffff;stroke:black">
+    <title>filler for symmetry (does not represent a person)</title>
+  </rect>
+</svg>
