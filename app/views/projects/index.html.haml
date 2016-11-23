@@ -1,8 +1,9 @@
-= link_to "Preference", user_path(current_user), :class => "btn btn-primary"
+%h3#gap Project List
 
-%h1 Project List
 
-%table
+#gap= link_to "Preference", user_path(current_user), :class => "btn btn-primary"
+
+%table#projectlist
   %thead
     %tr
       %th{:class => @class}= link_to "Project Name", projects_path(:type => "project_name"), :id => "project_name"
@@ -21,4 +22,4 @@
 
 %br/
 
-= link_to 'New Project', new_project_path
+= link_to 'Create New Project', new_project_path, :class => "btn btn-primary"

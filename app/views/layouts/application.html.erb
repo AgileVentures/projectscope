@@ -7,8 +7,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<div class="container">
+	<div class="col-md-12 header-bar">
+		<div class="col-md-9">		
+			<h4>Welcome to ProjectScope</h4>
+		</div>
+		<div class="col-md-3" style="text-align: right;">
+			<% if user_signed_in? %>
+				<%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => "btn btn-md btn-default") %> 
+			<% end %>
+		</div>
+	</div>
+	<div class="container" style="padding-top: 60px;">
 		<br>
+
 		<div class="row">
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
@@ -21,13 +32,9 @@
 			</div>
 			<div class="col-md-3"></div>
 	    </div>
-	    <div class="row">
-			<% if user_signed_in? %>
-				<%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => "btn btn-md btn-primary") %> 
-			<% end %>
-			<%= yield %>
-		</div>
-		</div>
+
+		<%= yield %>
 	</div>
 </body>
 </html>
+    
